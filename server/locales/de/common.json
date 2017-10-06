@@ -7,7 +7,9 @@
   "footer": {
     "poweredby": "Unterstützt von",
     "home": "Startseite",
-    "top": "Nach oben"
+    "top": "Nach oben",
+    "imprint": "Impressum",
+    "imprintUrl":"/impressum"
   },
   "sidebar": {
     "nav": "NAV",
