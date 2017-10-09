@@ -17,7 +17,12 @@ const mathjax = require('mathjax-node')
 const hljs = require('highlight.js')
 const cheerio = require('cheerio')
 const _ = require('lodash')
-const mdRemove = require('remove-markdown')
+const mdRemoveOrg = require('remove-markdown')
+
+const mdRemove = function(md, options) {
+  let strippedMd = md.replace(/:\w+:/gi, '')
+  return mdRemoveOrg(strippedMd, options)
+}
 
 // Load plugins
 
