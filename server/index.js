@@ -53,6 +53,7 @@ const bodyParser = require('body-parser')
 const compression = require('compression')
 const cookieParser = require('cookie-parser')
 const express = require('express')
+const proxy = require('express-http-proxy')
 const favicon = require('serve-favicon')
 const flash = require('connect-flash')
 const fork = require('child_process').fork
@@ -91,6 +92,8 @@ app.use(express.static(path.join(ROOTPATH, 'assets'), {
   index: false,
   maxAge: '7d'
 }))
+
+app.use('/teradatabase', proxy('http://teradatabase.net'))
 
 // ----------------------------------------
 // Passport Authentication
