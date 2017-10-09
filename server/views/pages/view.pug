@@ -80,6 +80,40 @@ block content
               h2.subtitle= pageData.meta.subtitle
           .content.mkcontent(v-pre, class=[appconfig.theme.code.dark ? 'is-code-dark' : 'is-code-light'])
             != pageData.html
+aside.is-hidden-desktop
+            .sidebar-label
+              span= t('sidebar.navigation')
+            ul.sidebar-menu
+              li
+                a(href='/')
+                  i.nc-icon-outline.ui-1_home-minimal
+                  span= t('nav.root')
+              li
+                a(href='/all')
+                  i.nc-icon-outline.business_hierarchy-55
+                  span= t('nav.allpages')
+              if pageData.parent
+                li
+                  a(href='/' + pageData.parent.path)
+                    i.icon-reply
+                    span= pageData.parent.title
+              if !isGuest
+                li
+                  a(href='/admin')
+                    i.nc-icon-outline.ui-1_settings-gear-63
+                    span= t('nav.settings')
+              else
+                li
+                  a(href='/login')
+                    i.nc-icon-outline.arrows-1_log-in
+                    span= t('nav.login')
+aside.sidebar-pagecontents.is-hidden-desktop
+            .sidebar-label
+              span= t('sidebar.pagecontents')
+            ul.sidebar-menu
+              li.is-hidden-until-scroll: a(href='#root', title='Top of Page')
+                i.icon-arrow-up2
+              +tocMenu(pageData.tree)
 
   modal-create-page(basepath=pageData.meta.path)
   modal-move-page(current-path=pageData.meta.path)
