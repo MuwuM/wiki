@@ -160,7 +160,12 @@ const parseTree = (content) => {
         anchor = _.kebabCase(content)
       } else {
         content = mdRemove(heading.content)
-        anchor = _.kebabCase(heading.children.reduce((acc, t) => acc + t.content, ''))
+        anchor = _.kebabCase(heading.children.reduce((acc, t) => {
+          if (t.type === 'emoji') {
+            return acc
+          }
+          return acc + t.content
+        }, ''))
       }
 
       tocArray.push({
