@@ -80,7 +80,7 @@ block content
               h2.subtitle= pageData.meta.subtitle
           .content.mkcontent(v-pre, class=[appconfig.theme.code.dark ? 'is-code-dark' : 'is-code-light'])
             != pageData.html
-  .sidebar.is-hidden-desktop
+  .sidebar.is-hidden-desktop(style='width:100%;max-width:vw;')
     aside
             .sidebar-label
               span= t('sidebar.navigation')
