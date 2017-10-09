@@ -95,6 +95,18 @@
 	margin-right: auto;
 }
 
+.nav-toggle{
+  @include touch{
+    span {
+      background-color: mc($color, '50');
+      display: block;
+      width: 22px;
+      height: 2px;
+      border-radius: 1px;
+    }
+  }
+}
+
 .nav-right {
 	@include tablet {
 		align-items: stretch;
