@@ -17,12 +17,7 @@ const mathjax = require('mathjax-node')
 const hljs = require('highlight.js')
 const cheerio = require('cheerio')
 const _ = require('lodash')
-const mdRemoveOrg = require('remove-markdown')
-
-const mdRemove = function(md, options) {
-  let strippedMd = md.replace(/:\w+:/gi, '')
-  return mdRemoveOrg(strippedMd, options)
-}
+const mdRemove = require('remove-markdown')
 
 // Load plugins
 
@@ -139,6 +134,7 @@ mathjax.config({
  */
 const parseTree = (content) => {
   content = content.replace(/<!--(.|\t|\n|\r)*?-->/g, '')
+    .replace(/:\w+:/gi, '')
   let tokens = md().parse(content, {})
   let tocArray = []
 
@@ -160,12 +156,7 @@ const parseTree = (content) => {
         anchor = _.kebabCase(content)
       } else {
         content = mdRemove(heading.content)
-        anchor = _.kebabCase(heading.children.reduce((acc, t) => {
-          if (t.type === 'emoji') {
-            return acc
-          }
-          return acc + t.content
-        }, ''))
+        anchor = _.kebabCase(heading.children.reduce((acc, t) => acc + t.content, ''))
       }
 
       tocArray.push({
