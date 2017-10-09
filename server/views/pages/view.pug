@@ -80,7 +80,8 @@ block content
               h2.subtitle= pageData.meta.subtitle
           .content.mkcontent(v-pre, class=[appconfig.theme.code.dark ? 'is-code-dark' : 'is-code-light'])
             != pageData.html
-  aside.is-hidden-desktop
+  .sidebar.is-hidden-desktop
+    aside
             .sidebar-label
               span= t('sidebar.navigation')
             ul.sidebar-menu
@@ -107,7 +108,7 @@ block content
                   a(href='/login')
                     i.nc-icon-outline.arrows-1_log-in
                     span= t('nav.login')
-  aside.sidebar-pagecontents.is-hidden-desktop
+    aside.sidebar-pagecontents.is-hidden-desktop
             .sidebar-label
               span= t('sidebar.pagecontents')
             ul.sidebar-menu
